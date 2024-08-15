@@ -20,24 +20,27 @@ def main():
     while True:
         try:
             dateTime = datetime.datetime.now(datetime.timezone.utc)
-            MTS001Write(dateTime)
+            print(dateTime)
+            MTS002Write(dateTime)
             time.sleep(1)
   
   
         except Exception as e:
             print(e)
             line = []
-    ser.close()
 
 
 
-def MTS001Write(dateTime):
 
-    sensorName = "MTS001"
+def MTS002Write(dateTime):
+
+    sensorName = "MTS002"
     sensorDictionary =  OrderedDict([
-                ("dateTime"     , str(dateTime)),
-        		("temperature"  , 25 + random.random()*5),
-            	("pressure"     ,900 + random.random()*10)
+                ("dateTime"          ,str(dateTime.strftime('%Y-%m-%d %H:%M:%S.%f'))),
+        		("temperature"       ,25 + random.random()*5),
+                ("temperatureUnits"  ,"C"),
+            	("pressure"          ,900 + random.random()*10),
+                ("pressureUnits"     ,"Mili Bar")
                 ])
 
         #Getting Write Path
